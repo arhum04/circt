@@ -875,6 +875,16 @@ OpFoldResult IntegerBitOrOp::fold(FoldAdaptor adaptor) {
 }
 
 //===----------------------------------------------------------------------===//
+// IntegerBitXorOp
+//===----------------------------------------------------------------------===//
+
+OpFoldResult IntegerBitXorOp::fold(FoldAdaptor adaptor) {
+  return foldIntegerBinaryArithmetic(
+      adaptor.getLhs(), adaptor.getRhs(),
+      [](const APSInt &lhs, const APSInt &rhs) { return success(lhs ^ rhs); });
+}
+
+//===----------------------------------------------------------------------===//
 // IntegerBitNotOp
 //===----------------------------------------------------------------------===//
 

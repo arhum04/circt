@@ -111,7 +111,7 @@ om.class @IntegerBinaryArithmeticFold(%x: !om.integer) -> (out1: !om.integer, ou
 // CHECK-LABEL: @IntegerBitwiseOpsFold
 om.class @IntegerBitwiseOpsFold(%x: !om.integer) -> (out1: !om.integer, out2: !om.integer,
                                                      out3: !om.integer, out4: !om.integer,
-                                                     out5: !om.integer) {
+                                                     out5: !om.integer, out6: !om.integer) {
   %i3 = om.constant #om.integer<3 : si4> : !om.integer
   %i5 = om.constant #om.integer<5 : si4> : !om.integer
   %neg2 = om.constant #om.integer<-2 : si4> : !om.integer
@@ -120,22 +120,24 @@ om.class @IntegerBitwiseOpsFold(%x: !om.integer) -> (out1: !om.integer, out2: !o
 
   // CHECK-DAG: [[AND:%.+]] = om.constant #om.integer<1 : si4> : !om.integer
   // CHECK-DAG: [[OR:%.+]] = om.constant #om.integer<7 : si4> : !om.integer
+  // CHECK-DAG: [[XOR:%.+]] = om.constant #om.integer<6 : si4> : !om.integer
   // CHECK-DAG: [[NOT:%.+]] = om.constant #om.integer<-1 : si4> : !om.integer
   // -2 is sign-extended to the 6-bit width of %wide before the operation.
   // CHECK-DAG: [[WIDEOR:%.+]] = om.constant #om.integer<-2 : si6> : !om.integer
   // CHECK: [[DYN:%.+]] = om.integer.bitand %x, %{{.+}} : !om.integer
   %0 = om.integer.bitand %i3, %i5 : !om.integer
   %1 = om.integer.bitor %i3, %i5 : !om.integer
-  %2 = om.integer.bitnot %zero : !om.integer
+  %2 = om.integer.bitxor %i3, %i5 : !om.integer
+  %3 = om.integer.bitnot %zero : !om.integer
 
   // Mixed bit widths should still fold after extending operands.
-  %3 = om.integer.bitor %neg2, %wide : !om.integer
+  %4 = om.integer.bitor %neg2, %wide : !om.integer
 
   // Non-constant operands should remain.
-  %4 = om.integer.bitand %x, %i3 : !om.integer
+  %5 = om.integer.bitand %x, %i3 : !om.integer
 
-  // CHECK: om.class.fields [[AND]], [[OR]], [[NOT]], [[WIDEOR]], [[DYN]]
-  om.class.fields %0, %1, %2, %3, %4 : !om.integer, !om.integer, !om.integer, !om.integer, !om.integer
+  // CHECK: om.class.fields [[AND]], [[OR]], [[XOR]], [[NOT]], [[WIDEOR]], [[DYN]]
+  om.class.fields %0, %1, %2, %3, %4, %5 : !om.integer, !om.integer, !om.integer, !om.integer, !om.integer, !om.integer
 }
 
 // CHECK-LABEL: @PropEqFold

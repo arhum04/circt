@@ -584,6 +584,19 @@ def IntegerBitOrOp : IntegerBinaryOp<"integer.bitor", [Commutative]> {
   }];
 }
 
+def IntegerBitXorOp : IntegerBinaryOp<"integer.bitxor", [Commutative]> {
+  let summary = "Compute the bitwise XOR of two OMIntegerType values";
+  let description = [{
+    Perform arbitrary precision signed integer bitwise XOR of two OMIntegerType
+    values.
+
+    Example:
+    ```mlir
+    %2 = om.integer.bitxor %0, %1 : !om.integer
+    ```
+  }];
+}
+
 def IntegerBitNotOp : OMOp<"integer.bitnot", [Pure]> {
   let summary = "Compute the bitwise NOT of an OMIntegerType value";
   let description = [{

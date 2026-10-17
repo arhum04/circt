@@ -333,8 +333,11 @@ om.class @IntegerArithmetic() {
   // CHECK: om.integer.bitor %0, %1 : !om.integer
   %7 = om.integer.bitor %0, %1 : !om.integer
 
+  // CHECK: om.integer.bitxor %0, %1 : !om.integer
+  %8 = om.integer.bitxor %0, %1 : !om.integer
+
   // CHECK: om.integer.bitnot %0 : !om.integer
-  %8 = om.integer.bitnot %0 : !om.integer
+  %9 = om.integer.bitnot %0 : !om.integer
 
   om.class.fields
 }
