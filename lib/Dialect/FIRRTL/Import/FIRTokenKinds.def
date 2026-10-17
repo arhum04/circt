@@ -271,6 +271,8 @@ TOK_LPKEYWORD_PRIM(integer_and, IntegerAndOp, 2, 0, missingSpecFIRVersion,
                    "Integers")
 TOK_LPKEYWORD_PRIM(integer_or, IntegerOrOp, 2, 0, missingSpecFIRVersion,
                    "Integers")
+TOK_LPKEYWORD_PRIM(integer_xor, IntegerXorOp, 2, 0, missingSpecFIRVersion,
+                   "Integers")
 TOK_LPKEYWORD_PRIM(integer_not, IntegerNotOp, 1, 0, missingSpecFIRVersion,
                    "Integers")
 TOK_LPKEYWORD(string_concat)

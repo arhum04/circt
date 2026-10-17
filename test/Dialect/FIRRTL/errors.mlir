@@ -3603,6 +3603,16 @@ firrtl.circuit "IntegerOrWrongType" {
 
 // -----
 
+firrtl.circuit "IntegerXorWrongType" {
+  firrtl.module @IntegerXorWrongType(
+      in %lhs: !firrtl.integer, in %rhs: !firrtl.bool) {
+    // expected-error @+1 {{'firrtl.integer.xor' op operand #1 must be integer type}}
+    %0 = "firrtl.integer.xor"(%lhs, %rhs) : (!firrtl.integer, !firrtl.bool) -> !firrtl.integer
+  }
+}
+
+// -----
+
 firrtl.circuit "IntegerNotWrongType" {
   firrtl.module @IntegerNotWrongType(in %input: !firrtl.string) {
     // expected-error @+1 {{'firrtl.integer.not' op operand #0 must be integer type}}

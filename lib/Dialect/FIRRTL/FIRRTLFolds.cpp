@@ -1030,6 +1030,12 @@ OpFoldResult IntegerOrOp::fold(FoldAdaptor adaptor) {
       [](const APInt &lhs, const APInt &rhs) { return lhs | rhs; });
 }
 
+OpFoldResult IntegerXorOp::fold(FoldAdaptor adaptor) {
+  return foldFIntegerBinaryBitwise(
+      getContext(), adaptor.getLhs(), adaptor.getRhs(),
+      [](const APInt &lhs, const APInt &rhs) { return lhs ^ rhs; });
+}
+
 OpFoldResult IntegerNotOp::fold(FoldAdaptor adaptor) {
   auto input = dyn_cast_or_null<IntegerAttr>(adaptor.getInput());
   if (!input || !input.getType().isSignedInteger())

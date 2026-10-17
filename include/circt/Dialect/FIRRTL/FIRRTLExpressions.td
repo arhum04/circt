@@ -1483,6 +1483,22 @@ def IntegerOrOp : IntegerBinaryPrimOp<"integer.or", [Commutative]> {
   }];
 }
 
+def IntegerXorOp : IntegerBinaryPrimOp<"integer.xor", [Commutative]> {
+  let summary = "Bitwise XOR of two FIntegerType values";
+  let description = [{
+    Computes the bitwise XOR of two arbitrary precision signed integer values.
+    If the operands have different widths, the narrower operand is sign-extended
+    to the width of the wider operand before the operation. The result is an
+    arbitrary precision signed integer with no truncation.
+
+    Example:
+    ```mlir
+    %2 = firrtl.integer.xor %0, %1 : (!firrtl.integer, !firrtl.integer) ->
+                                         !firrtl.integer
+    ```
+  }];
+}
+
 class IntegerUnaryPrimOp<string mnemonic> :
     UnaryPrimOp<mnemonic, FIntegerType, FIntegerType,
                 [Pure, SameOperandsAndResultType]> {

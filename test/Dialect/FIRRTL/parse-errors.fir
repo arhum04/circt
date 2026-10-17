@@ -1126,6 +1126,17 @@ FIRRTL version 6.0.0
 circuit Top:
   public module Top:
     input a : Integer
+    input b : Integer
+    output c : Integer
+    ; expected-error @below {{Integers are a FIRRTL 7.0.0+ feature, but the specified FIRRTL version was 6.0.0}}
+    propassign c, integer_xor(a, b)
+
+;// -----
+FIRRTL version 6.0.0
+
+circuit Top:
+  public module Top:
+    input a : Integer
     output c : Integer
     ; expected-error @below {{Integers are a FIRRTL 7.0.0+ feature, but the specified FIRRTL version was 6.0.0}}
     propassign c, integer_not(a)

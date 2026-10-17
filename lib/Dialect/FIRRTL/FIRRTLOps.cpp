@@ -6750,6 +6750,9 @@ void IntegerAndOp::getAsmResultNames(OpAsmSetValueNameFn setNameFn) {
 void IntegerOrOp::getAsmResultNames(OpAsmSetValueNameFn setNameFn) {
   genericAsmResultNames(*this, setNameFn);
 }
+void IntegerXorOp::getAsmResultNames(OpAsmSetValueNameFn setNameFn) {
+  genericAsmResultNames(*this, setNameFn);
+}
 void IntegerNotOp::getAsmResultNames(OpAsmSetValueNameFn setNameFn) {
   genericAsmResultNames(*this, setNameFn);
 }

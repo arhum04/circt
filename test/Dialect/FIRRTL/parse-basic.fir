@@ -1708,6 +1708,7 @@ circuit IntegerBitwise :
     input c : Integer
     output andResult : Integer
     output orResult : Integer
+    output xorResult : Integer
     output notResult : Integer
     output nestedResult : Integer
     output literalResult : Integer
@@ -1719,6 +1720,10 @@ circuit IntegerBitwise :
     ; CHECK: [[OR:%.+]] = firrtl.integer.or %a, %b
     ; CHECK: firrtl.propassign %orResult, [[OR]]
     propassign orResult, integer_or(a, b)
+
+    ; CHECK: [[XOR:%.+]] = firrtl.integer.xor %a, %b
+    ; CHECK: firrtl.propassign %xorResult, [[XOR]]
+    propassign xorResult, integer_xor(a, b)
 
     ; CHECK: [[NOT:%.+]] = firrtl.integer.not %c
     ; CHECK: firrtl.propassign %notResult, [[NOT]]

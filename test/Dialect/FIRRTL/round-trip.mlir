@@ -147,9 +147,12 @@ firrtl.module @PropertyArithmetic() {
   // CHECK: firrtl.integer.or %0, %1 : (!firrtl.integer, !firrtl.integer) -> !firrtl.integer
   %7 = firrtl.integer.or %0, %1 : (!firrtl.integer, !firrtl.integer) -> !firrtl.integer
 
+  // CHECK: firrtl.integer.xor %0, %1 : (!firrtl.integer, !firrtl.integer) -> !firrtl.integer
+  %8 = firrtl.integer.xor %0, %1 : (!firrtl.integer, !firrtl.integer) -> !firrtl.integer
+
   %negative = firrtl.integer -2
   // CHECK: firrtl.integer.not %{{.+}} : (!firrtl.integer) -> !firrtl.integer
-  %8 = firrtl.integer.not %negative : (!firrtl.integer) -> !firrtl.integer
+  %9 = firrtl.integer.not %negative : (!firrtl.integer) -> !firrtl.integer
 }
 
 // CHECK-LABEL: firrtl.module @PropertyStringOps

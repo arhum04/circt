@@ -9,6 +9,7 @@ circuit IntegerPropertyBitwise:
   class Properties:
     output andResult : Integer
     output orResult : Integer
+    output xorResult : Integer
     output notResult : Integer
 
     ; These operands have different significant widths. In particular, -2 is
@@ -18,6 +19,9 @@ circuit IntegerPropertyBitwise:
 
     ; CHECK: firrtl.integer.or
     propassign orResult, integer_or(Integer(-2), Integer(16))
+
+    ; CHECK: firrtl.integer.xor
+    propassign xorResult, integer_xor(Integer(-2), Integer(16))
 
     ; CHECK: firrtl.integer.not
     propassign notResult, integer_not(Integer(0))
